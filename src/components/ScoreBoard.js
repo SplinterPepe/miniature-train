@@ -1,44 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import styled from 'styled-components';
 import scoreImg from './scull.png';
+import { getScore } from '../redux/selectors.js';
+
+const mapStateToProps = state => ({
+  score: getScore(state),
+});
+
 class ScoreBoard extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {score: 0};
-  }
-
-  incScore = () => {
-    console.log(this.state);
-
-    this.setState(prevState => {
-      return {
-        
-        score: prevState.score + 1}
-    });
-  }
-
   render(){
+    const score = this.props.score;
+
     let RenderScore = [];
     let Progress;
-    for (var i = 0; i < this.state.score; i++) {
+    for (var i = 0; i < score; i++) {
       RenderScore.push(<StyledScore />)
     }
     
-    if (this.state.score === 0) {
+    if (score === 0) {
       Progress = <StyledMessege>Click HERE</StyledMessege>
-    } else if(this.state.score < 5){
+    } else if(score < 5){
       Progress = <StyledMessege>MORE</StyledMessege>
-    } else if(this.state.score < 10){
+    } else if(score < 10){
       Progress = <StyledMessege>YEP</StyledMessege>
-    } else if(this.state.score < 15){
+    } else if(score < 15){
       Progress = <StyledMessege>CLICK MORE</StyledMessege>
     } else{
       Progress = <StyledMessege>:)</StyledMessege>
     }
 
     return (
-      <StyledScoreBoard onClick={this.incScore}>
+      <StyledScoreBoard>
         {RenderScore}
         {Progress}
       </StyledScoreBoard>
@@ -46,7 +39,7 @@ class ScoreBoard extends Component {
   }
 }
 
-export default ScoreBoard;
+export default connect(mapStateToProps)(ScoreBoard);
 
 const StyledScoreBoard =styled.div`
   height: 600px;
