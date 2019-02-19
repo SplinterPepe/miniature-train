@@ -6,32 +6,38 @@ import {
 } from './actions';
 
 const showKitten = (state = {
-  count: 0,
   isVisible: true
 }, action) => {
   switch (action.type) {
     case HIDE_KITTEN: 
       return {
-        ...state,
         isVisible: false
       };
     case SHOW_KITTEN:
-    return {
-      ...state,
-      isVisible: true
-    };
-    // case INCREMENT: 
-    //   return {
-    //     ...state,
-    //     count: state.count + 1
-    //   };
+      return {
+        isVisible: true
+      };
     default:
       return state;  
   }
 }
 
+const incScore = (state = {
+  score: 0
+}, action) => {
+  switch(action.type) {
+    case INCREASE_SCORE:
+      return{
+        score: state.score + 1
+      };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
-  showKitten
+  showKitten,
+  incScore
 })
 
 export default rootReducer;
