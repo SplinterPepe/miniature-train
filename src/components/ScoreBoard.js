@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import scoreImg from './scull.png';
-
 class ScoreBoard extends Component {
 
   constructor(props) {
     super(props);
     this.state = {score: 0};
   }
+
   incScore = () => {
     console.log(this.state);
+
     this.setState(prevState => {
-      return {score: prevState.score + 1}
+      return {
+        
+        score: prevState.score + 1}
     });
   }
+
   render(){
     let RenderScore = [];
     let Progress;
     for (var i = 0; i < this.state.score; i++) {
       RenderScore.push(<StyledScore />)
     }
+    
     if (this.state.score === 0) {
       Progress = <StyledMessege>Click HERE</StyledMessege>
     } else if(this.state.score < 5){
       Progress = <StyledMessege>MORE</StyledMessege>
     } else if(this.state.score < 10){
-      Progress = <StyledMessege>smile..</StyledMessege>
+      Progress = <StyledMessege>YEP</StyledMessege>
     } else if(this.state.score < 15){
       Progress = <StyledMessege>CLICK MORE</StyledMessege>
     } else{
@@ -39,7 +44,6 @@ class ScoreBoard extends Component {
       </StyledScoreBoard>
     )
   }
-  
 }
 
 export default ScoreBoard;
