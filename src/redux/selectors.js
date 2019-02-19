@@ -1,0 +1,1 @@
+export const getKittenStatus = state => state.showKitten.isVisible;

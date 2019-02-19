@@ -1,52 +1,40 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import styled from 'styled-components';
+import { getKittenStatus } from '../redux/selectors';
+import { shootKitten, resKitten } from '../redux/actions';
+
+const mapStateToProps = state => ({
+  isVisible: getKittenStatus(state),
+});
+
+const mapDispatchToProps = {
+  handleShowClick: resKitten,
+  handleHideClick: shootKitten,
+}
 
 class KittenImg extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {showKitten: true};
-  }
-
-  showOnClick = () => {
-    console.log(this.state);
-    this.setState(state => ({
-      showKitten: true
-    }));
-  }
-  hideOnClick = () => {
-    console.log(this.state);
-    this.setState(state => ({
-      showKitten: false
-    }));
-  }
   render() {
-
-    const showKitten = this.state.showKitten;
-
-    let Show;
-
-    if (showKitten) {
-      Show = <img onClick={this.hideOnClick} src="http://placekitten.com/500/500" alt="Here should be kitten."></img>
-    } else {
-      Show = <StyledButtonWrapper>
-              <p>You clicked the kitten.</p>
-              <p>Click again.</p>
-              <StyledButton onClick={this.showOnClick}>
-                RESURRECT
-              </StyledButton>
-            </StyledButtonWrapper>
-    }
+    const isVisible = this.props.isVisible;
 
     return (
       <StyledWrapper>
-        {Show}
+        {isVisible
+          ? <img onClick={() => this.props.handleHideClick()} src="http://placekitten.com/500/500" alt="Here should be kitten."></img>
+          : <StyledButtonWrapper>
+              <p>You clicked the kitten.</p>
+              <p>Click again.</p>
+              <StyledButton onClick={()=> this.props.handleShowClick()}>
+                RESURRECT
+              </StyledButton>
+            </StyledButtonWrapper>
+          }
       </StyledWrapper>
     );
   }
 }
 
-export default KittenImg;
+export default connect(mapStateToProps, mapDispatchToProps)(KittenImg);
 
 const StyledButtonWrapper = styled.div`
   flex-direction: column;
