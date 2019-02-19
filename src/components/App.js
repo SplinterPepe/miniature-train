@@ -4,33 +4,55 @@ import KittenImg from './KittenImg.js'
 import ScoreBoard from './ScoreBoard.js';
 
 class App extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state = {
-      howisit: 'Bad',
-      daytime: 'afternoon',
-      whoisyou: 'Some guy',
-      name:'PPD'};
-  }
-  
+
+
   render() {
     return (
-      <div className="App">
+      <StyledApp>
         <StyledHeader>
-            {this.state.howisit} {this.state.daytime}. {this.state.whoisyou} {this.state.name}.
+          <StyledLogo>
+            ULTIMATE KITTEN CLICKER
+          </StyledLogo>
         </StyledHeader>
-        <KittenImg />
-        <ScoreBoard />
-      </div>
+        <StyledDivider/>
+        <StyledContentWrapper>
+          <KittenImg />
+          <StyledDivider/>
+          <ScoreBoard />
+        </StyledContentWrapper>
+      </StyledApp>
     );
   }
-}
+} 
 
 export default App;
-
-const StyledHeader = styled.header`
-  height:150px;
-  background: yellowgreen;
-  color: black;
+const StyledApp = styled.div`
+  min-height: 100vh;
+  width: 100%;
 `;
+const StyledHeader = styled.header`  
+  background: black;
+  color: cornflowerblue;
+  display: flex;
+  justify-content: center; 
+  height:100px;
+`;
+const StyledLogo = styled.div`
+  font-size: 37px;
+  font-weight: 600;
+  text-align: center;
+  align-self: center;
+`;
+
+const StyledDivider = styled.div`
+  height: 2px;
+  background: gainsboro;
+`;
+
+const StyledContentWrapper = styled.div`
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+
+
+`
