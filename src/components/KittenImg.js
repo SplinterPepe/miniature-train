@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import { getKittenStatus, getScore} from '../redux/selectors';
 import { shootKitten, resKitten, incScore } from '../redux/actions';
+import KittenJpg from './kitten.jpg';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
@@ -18,19 +19,21 @@ const mapDispatchToProps = {
 class KittenImg extends Component {
   render() {
     const isVisible = this.props.isVisible;
-
     return (
       <StyledWrapper>
         {isVisible
-          ? <img onClick={() => {this.props.handleScoreInc(); this.props.handleHideClick()}} src="http://placekitten.com/g/500/500" alt="Here should be kitten."></img>
-          : <StyledButtonWrapper>
-              <p>You clicked the kitten.</p> 
-              <p>Click again.</p>
-              <StyledButton onClick={()=> this.props.handleShowClick()}>
-                RESURRECT
-              </StyledButton>
-            </StyledButtonWrapper>
-          }
+          ? <StyledImgWrapper onClick={() => {
+              this.props.handleScoreInc();
+              this.props.handleHideClick();
+              ((setTimeout(() => {
+                this.props.handleShowClick()}, 1000))
+              )
+            }}/>
+          :
+            <StyledMessege>
+              <p>Good job!</p>
+            </StyledMessege>
+        }
       </StyledWrapper>
     );
   }
@@ -38,26 +41,34 @@ class KittenImg extends Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(KittenImg);
 
-const StyledButtonWrapper = styled.div`
+const StyledMessege = styled.div`
   flex-direction: column;
+  font-size: 37px;
+  font-weight: 600;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   background: yellowgreen;
   padding: 10px;
 `;
 
 const StyledWrapper = styled.div`
-	display: flex;
-  flex-direction: row;
-  background: cornflowerblue;
+  display: flex;
+  background: yellowgreen;
   justify-content: center;
-  height: 500px;
+  height: 638px;
+
 `;
+const StyledImgWrapper = styled.div`
+  cursor: pointer;
+  background-image: url(${KittenJpg});
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 400px;
 
-const StyledButton = styled.button`
-  background: cornflowerblue;
-  font-size: 30px;
-  color: black;
-`;
+  /* min-width: 50px;
+  min-height: fit-content;
+  max-width: 700px;
+  max-height: fit-content; */
 
-
+`
