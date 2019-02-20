@@ -1,24 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
-import KittenImg from './KittenImg';
+import Kitten from './Kitten';
 import ScoreBoard from './ScoreBoard';
+import logo from './logo.png';
+import logoText from './logoText.png';
 
 const App = () => {
   return (
     <StyledApp>
       <StyledHeader>
-        <StyledLogo>ULTIMATE KITTEN CLICKER</StyledLogo>
+        <StyledLogo>
+          <img src={logo} alt="logo" />
+          <img src={logoText} alt="logoText" />
+        </StyledLogo>
       </StyledHeader>
-      <StyledDivider />
-      <KittenImg />
-      <StyledDivider />
+      <StyledMenu />
+      <Kitten />
       <ScoreBoard />
-      <StyledDivider />
       <StyledFooter />
     </StyledApp>
   );
 };
-
+const StyledMenu = styled.div`
+  height: 70px;
+  background-color: #fac472;
+`;
 const StyledApp = styled.div`
   height: 100%;
   min-height: 100%;
@@ -26,26 +32,24 @@ const StyledApp = styled.div`
   flex-direction: column;
 `;
 const StyledHeader = styled.header`
-  background: black;
-  color: cornflowerblue;
+  background: #f9ad84;
+  color: #111110;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100px;
 `;
 const StyledLogo = styled.div`
-  font-size: 37px;
-  font-weight: 600;
-  text-align: center;
-  align-self: center;
-`;
-
-const StyledDivider = styled.div`
-  height: 2px;
-  background: gainsboro;
+  cursor: pointer;
+  width: 200px;
+  height: 100px;
+  margin-left: 15%;
+  > img {
+    height: 100px;
+  }
 `;
 
 const StyledFooter = styled.div`
-  background-color: black;
+  background-color: #111110;
   width: 100%;
   height: 50px;
 `;

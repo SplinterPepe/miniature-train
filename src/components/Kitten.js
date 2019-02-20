@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getKittenStatus, getScore } from '../redux/selectors';
 import { hideKitten, showKitten, incScore } from '../redux/actions';
+import fireworksImg from './fireworks.png';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
@@ -27,8 +28,8 @@ const KittenImg = state => {
   return (
     <StyledWrapper>
       {isVisible ? (
-        <StyledImgWrapper
-          src={`https://cataas.com/cat?tm=${Date.now()}`}
+        <StyledImg
+          src={`https://cataas.com/cat?height=450?tm=${Date.now()}`}
           alt="Here should be cat"
           onClick={() => {
             handleClick();
@@ -37,6 +38,7 @@ const KittenImg = state => {
       ) : (
         <StyledMessege>
           <p>Good job!</p>
+          <p>Click again</p>
         </StyledMessege>
       )}
     </StyledWrapper>
@@ -45,30 +47,33 @@ const KittenImg = state => {
 
 const StyledMessege = styled.div`
   flex-direction: column;
-  font-size: 37px;
-  font-weight: 600;
+  align-items: center;
+  font-size: 50px;
+  font-weight: 700;
   display: flex;
-  justify-content: center;
-  background: yellowgreen;
-  padding: 10px;
+  color: #000;
+  background-image: url(${fireworksImg});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
 `;
 
 const StyledWrapper = styled.div`
   display: flex;
-  background: yellowgreen;
+  background: #70c8be;
   justify-content: center;
   flex-shrink: 1;
   flex-grow: 0;
-  height: 600px;
+  height: 500px;
 `;
-const StyledImgWrapper = styled.img`
+const StyledImg = styled.img`
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
-  height: 600px;
-  width: 400px;
+  height: 500px;
+  width: auto;
 `;
-// background-image: ${({ catUrl }) => `url(${catUrl})`};
 
 export default connect(
   mapStateToProps,

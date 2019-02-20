@@ -26,7 +26,7 @@ const ScoreBoard = state => {
 const StyledScoreBoard = styled.div`
   flex-shrink: 1;
   flex-grow: 1;
-  background: cornflowerblue;
+  background: #d1d168;
   display: flex;
   flex-direction: column;
 `;
