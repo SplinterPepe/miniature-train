@@ -1,45 +1,44 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getKittenStatus, getScore} from '../redux/selectors';
-import { shootKitten, resKitten, incScore } from '../redux/actions';
-import KittenJpg from './kitten.jpg';
+import { getKittenStatus, getScore } from '../redux/selectors';
+import { hideKitten, showKitten, incScore } from '../redux/actions';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
-  score: getScore(state),
+  score: getScore(state)
 });
 
 const mapDispatchToProps = {
-  handleHideClick: shootKitten,
-  handleShowClick: resKitten,
-  handleScoreInc: incScore,
-}
+  handleHideClick: hideKitten,
+  handleShowClick: showKitten,
+  handleScoreInc: incScore
+};
 
-class KittenImg extends Component {
-  render() {
-    const isVisible = this.props.isVisible;
-    return (
-      <StyledWrapper>
-        {isVisible
-          ? <StyledImgWrapper onClick={() => {
-              this.props.handleScoreInc();
-              this.props.handleHideClick();
-              ((setTimeout(() => {
-                this.props.handleShowClick()}, 1000))
-              )
-            }}/>
-          :
-            <StyledMessege>
-              <p>Good job!</p>
-            </StyledMessege>
-        }
-      </StyledWrapper>
-    );
-  }
-}
+const KittenImg = state => {
+  const { isVisible } = state;
+  return (
+    <StyledWrapper>
+      {isVisible ? (
+        <StyledImgWrapper
+          onClick={() => {
+            state.handleScoreInc();
 
-export default connect(mapStateToProps, mapDispatchToProps)(KittenImg);
+            state.handleHideClick();
+
+            setTimeout(() => {
+              state.handleShowClick();
+            }, 1000);
+          }}
+        />
+      ) : (
+        <StyledMessege>
+          <p>Good job!</p>
+        </StyledMessege>
+      )}
+    </StyledWrapper>
+  );
+};
 
 const StyledMessege = styled.div`
   flex-direction: column;
@@ -55,20 +54,20 @@ const StyledWrapper = styled.div`
   display: flex;
   background: yellowgreen;
   justify-content: center;
-  height: 638px;
-
+  flex-shrink: 1;
+  flex-grow: 0;
+  height: 600px;
 `;
 const StyledImgWrapper = styled.div`
   cursor: pointer;
-  background-image: url(${KittenJpg});
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  height: 100%;
+  height: 600px;
   width: 400px;
+`;
+// background-image: ${({ catUrl }) => `url(${catUrl})`};
 
-  /* min-width: 50px;
-  min-height: fit-content;
-  max-width: 700px;
-  max-height: fit-content; */
-
-`
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(KittenImg);

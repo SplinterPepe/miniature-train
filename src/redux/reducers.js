@@ -1,15 +1,14 @@
 import { combineReducers } from 'redux';
-import {
-  HIDE_KITTEN,
-  SHOW_KITTEN,
-  INCREASE_SCORE
-} from './actions';
+import { HIDE_KITTEN, SHOW_KITTEN, INCREASE_SCORE } from './actions';
 
-const showKitten = (state = {
-  isVisible: true
-}, action) => {
+const showKitten = (
+  state = {
+    isVisible: true
+  },
+  action
+) => {
   switch (action.type) {
-    case HIDE_KITTEN: 
+    case HIDE_KITTEN:
       return {
         isVisible: false
       };
@@ -18,26 +17,27 @@ const showKitten = (state = {
         isVisible: true
       };
     default:
-      return state;  
+      return state;
   }
-}
+};
 
-const incScore = (state = {
-  score: 0
-}, action) => {
-  switch(action.type) {
+const incScore = (
+  state = {
+    score: 0
+  },
+  action
+) => {
+  switch (action.type) {
     case INCREASE_SCORE:
-      return{
+      return {
         score: state.score + 1
       };
     default:
       return state;
   }
-}
+};
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   showKitten,
   incScore
-})
-
-export default rootReducer;
+});

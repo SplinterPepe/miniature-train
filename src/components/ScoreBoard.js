@@ -1,81 +1,54 @@
-import React, { Component } from 'react';
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import scoreImg from './star.png';
-import { getScore } from '../redux/selectors.js';
+import { getScore } from '../redux/selectors';
 
 const mapStateToProps = state => ({
-  score: getScore(state),
+  score: getScore(state)
 });
 
-class ScoreBoard extends Component {
-  render(){
-    const score = this.props.score;
-
-    let RenderScore = [];
-    for (var i = 0; i < score; i++) {
-      RenderScore.push(<StyledScore />)
-    }
-
-    let Progress;
-    if (score === 0) {
-      Progress = <StyledMessege>Click some kittens</StyledMessege>
-    } else if(score < 5){
-      Progress = <StyledMessege>More</StyledMessege>
-    } else if(score < 10){
-      Progress = <StyledMessege>Yep</StyledMessege>
-    } else if(score < 15){
-      Progress = <StyledMessege>Click more</StyledMessege>
-    } else{
-      Progress = <StyledMessege>:)</StyledMessege>
-    }
-    // {(score === 0) 
-    //   ? Progress = <StyledMessege>Click some kittens</StyledMessege> :
-    //   (score < 5)
-    //     ? Progress = <StyledMessege>More</StyledMessege> :
-    //     (score < 10)
-    //       ? Progress = <StyledMessege>Yep</StyledMessege> :
-    //       (score <15)
-    //         ? Progress = <StyledMessege>Click more</StyledMessege> :
-    //         Progress = <StyledMessege>:)</StyledMessege>
-    // }
-    return (
-      <StyledScoreBoard>
-        {Progress}
-        <StyledStarWrapper>
-          {RenderScore} 
-        </StyledStarWrapper>    
-      </StyledScoreBoard>
-    )
+const ScoreBoard = state => {
+  const { score } = state.score;
+  const RenderScoreStars = [];
+  for (let i = 0; i < score; i += 1) {
+    RenderScoreStars.push(<StyledScore />);
   }
-}
-
-export default connect(mapStateToProps)(ScoreBoard);
+  const RenderScore = score;
+  return (
+    <StyledScoreBoard>
+      <StyledMessege>Score: {RenderScore}!</StyledMessege>
+      <StyledStarWrapper>{RenderScoreStars}</StyledStarWrapper>
+    </StyledScoreBoard>
+  );
+};
 
 const StyledScoreBoard = styled.div`
-  height: 350px;
+  flex-shrink: 1;
+  flex-grow: 1;
   background: cornflowerblue;
-  display:flex; 
-  flex:1;
+  display: flex;
   flex-direction: column;
 `;
 const StyledStarWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  align-content: center ;
+  align-content: center;
   flex-direction: row;
   width: 80%;
   align-self: center;
 `;
 const StyledScore = styled.div`
-  height:50px;
+  height: 50px;
   width: 50px;
   background: url(${scoreImg});
   background-size: contain;
 `;
 const StyledMessege = styled.div`
-  align-self: center; 
+  align-self: center;
   font-size: 30px;
   font-weight: 600;
   color: black;
 `;
+
+export default connect(mapStateToProps)(ScoreBoard);

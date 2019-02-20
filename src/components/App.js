@@ -1,41 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import KittenImg from './KittenImg.js'
-import ScoreBoard from './ScoreBoard.js';
+import KittenImg from './KittenImg';
+import ScoreBoard from './ScoreBoard';
 
-class App extends Component {
+const App = () => {
+  return (
+    <StyledApp>
+      <StyledHeader>
+        <StyledLogo>ULTIMATE KITTEN CLICKER</StyledLogo>
+      </StyledHeader>
+      <StyledDivider />
+      <KittenImg />
+      <StyledDivider />
+      <ScoreBoard />
+      <StyledDivider />
+      <StyledFooter />
+    </StyledApp>
+  );
+};
 
-
-  render() {
-    return (
-      <StyledApp>
-        <StyledHeader>
-          <StyledLogo>
-            ULTIMATE KITTEN CLICKER
-          </StyledLogo>
-        </StyledHeader>
-        <StyledDivider/>
-        <StyledContentWrapper>
-          <KittenImg />
-          <StyledDivider/>
-          <ScoreBoard />
-        </StyledContentWrapper>
-      </StyledApp>
-    );
-  }
-} 
-
-export default App;
 const StyledApp = styled.div`
-  min-height: 100vh;
-  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
 `;
-const StyledHeader = styled.header`  
+const StyledHeader = styled.header`
   background: black;
   color: cornflowerblue;
   display: flex;
-  justify-content: center; 
-  height:100px;
+  justify-content: center;
+  height: 100px;
 `;
 const StyledLogo = styled.div`
   font-size: 37px;
@@ -49,10 +44,10 @@ const StyledDivider = styled.div`
   background: gainsboro;
 `;
 
-const StyledContentWrapper = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content: center;
+const StyledFooter = styled.div`
+  background-color: black;
+  width: 100%;
+  height: 50px;
+`;
 
-
-`
+export default App;
