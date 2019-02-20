@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 });
 
 const ScoreBoard = state => {
-  const { score } = state.score;
+  const { score } = state;
   const RenderScoreStars = [];
   for (let i = 0; i < score; i += 1) {
     RenderScoreStars.push(<StyledScore />);
@@ -18,7 +18,7 @@ const ScoreBoard = state => {
   return (
     <StyledScoreBoard>
       <StyledMessege>Score: {RenderScore}!</StyledMessege>
-      <StyledStarWrapper>{RenderScoreStars}</StyledStarWrapper>
+      <StyledStar>{RenderScoreStars}</StyledStar>
     </StyledScoreBoard>
   );
 };
@@ -30,7 +30,7 @@ const StyledScoreBoard = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const StyledStarWrapper = styled.div`
+const StyledStar = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

@@ -10,25 +10,28 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  handleHideClick: hideKitten,
-  handleShowClick: showKitten,
+  handleHide: hideKitten,
+  handleShow: showKitten,
   handleScoreInc: incScore
 };
 
 const KittenImg = state => {
+  function handleClick() {
+    state.handleHide();
+    state.handleScoreInc();
+    setTimeout(() => {
+      state.handleShow();
+    }, 1000);
+  }
   const { isVisible } = state;
   return (
     <StyledWrapper>
       {isVisible ? (
         <StyledImgWrapper
+          src={`https://cataas.com/cat?tm=${Date.now()}`}
+          alt="Here should be cat"
           onClick={() => {
-            state.handleScoreInc();
-
-            state.handleHideClick();
-
-            setTimeout(() => {
-              state.handleShowClick();
-            }, 1000);
+            handleClick();
           }}
         />
       ) : (
@@ -58,7 +61,7 @@ const StyledWrapper = styled.div`
   flex-grow: 0;
   height: 600px;
 `;
-const StyledImgWrapper = styled.div`
+const StyledImgWrapper = styled.img`
   cursor: pointer;
   background-size: cover;
   background-repeat: no-repeat;
