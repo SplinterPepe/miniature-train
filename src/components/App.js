@@ -2,29 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import Kitten from './Kitten';
 import ScoreBoard from './ScoreBoard';
-import logo from './logo.png';
+import Menu from './Menu';
+import mfCat from './mfCat.webp';
+import ripCat from './ripCat.webp';
 import logoText from './logoText.png';
+import coolCat from './coolCat.webp';
 
 const App = () => {
   return (
     <StyledApp>
       <StyledHeader>
         <StyledLogo>
-          <img src={logo} alt="logo" />
-          <img src={logoText} alt="logoText" />
+          <img src={coolCat} />
+          <img src={logoText} />
         </StyledLogo>
       </StyledHeader>
-      <StyledMenu />
+      <Menu />
       <Kitten />
       <ScoreBoard />
       <StyledFooter />
     </StyledApp>
   );
 };
-const StyledMenu = styled.div`
-  height: 70px;
-  background-color: #fac472;
-`;
+
 const StyledApp = styled.div`
   height: 100%;
   min-height: 100%;
@@ -33,21 +33,21 @@ const StyledApp = styled.div`
 `;
 const StyledHeader = styled.header`
   background: #f9ad84;
-  color: #111110;
   display: flex;
-  justify-content: flex-start;
-  height: 100px;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
 `;
 const StyledLogo = styled.div`
   cursor: pointer;
-  width: 200px;
-  height: 100px;
-  margin-left: 15%;
+  width: auto;
+  height: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
   > img {
     height: 100px;
+    width: auto;
   }
 `;
-
 const StyledFooter = styled.div`
   background-color: #111110;
   width: 100%;

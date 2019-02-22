@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { HIDE_KITTEN, SHOW_KITTEN, INCREASE_SCORE } from './actions';
+import { HIDE_KITTEN, SHOW_KITTEN, INCREASE_SCORE, SET_COLOR } from './actions';
 
 const showKitten = (
   state = {
@@ -37,7 +37,39 @@ const incScore = (
   }
 };
 
+const setColor = (
+  state = {
+    color: ''
+  },
+  action
+) => {
+  switch (action.type) {
+    case SET_COLOR:
+      switch (state.color) {
+        case '':
+          return {
+            color: '/orange'
+          };
+        case '/orange':
+          return {
+            color: '/black'
+          };
+        case '/black':
+          return {
+            color: ''
+          };
+        default:
+          return {
+            color: ''
+          };
+      }
+    default:
+      return state;
+  }
+};
+
 export const rootReducer = combineReducers({
   showKitten,
-  incScore
+  incScore,
+  setColor
 });

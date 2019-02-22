@@ -14,10 +14,9 @@ const ScoreBoard = state => {
   for (let i = 0; i < score; i += 1) {
     RenderScoreStars.push(<StyledScore />);
   }
-  const RenderScore = score;
   return (
     <StyledScoreBoard>
-      <StyledMessege>Score: {RenderScore}!</StyledMessege>
+      <StyledMessege>Score: {score} </StyledMessege>
       <StyledStar>{RenderScoreStars}</StyledStar>
     </StyledScoreBoard>
   );
@@ -48,7 +47,7 @@ const StyledMessege = styled.div`
   align-self: center;
   font-size: 30px;
   font-weight: 600;
-  color: black;
+  color: #111110;
 `;
 
 export default connect(mapStateToProps)(ScoreBoard);
