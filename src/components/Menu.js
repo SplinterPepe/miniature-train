@@ -65,7 +65,7 @@ class Menu extends React.Component {
             <StyledTwoRowButtonBox>
               <StyledTextSubmitionInput
                 ref={this.menuRef}
-                placeholder={text !== '' ? `Says "${text}"` : 'Say nothing'}
+                placeholder="Say nothing"
               />
 
               <StyledSubmitButton
