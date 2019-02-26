@@ -1,14 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getKittenStatus, getScore, getColor } from '../redux/selectors';
+import {
+  getKittenStatus,
+  getScore,
+  getColor,
+  getText
+} from '../redux/selectors';
 import { hideKitten, showKitten, incScore } from '../redux/actions';
 import fireworksImg from './fireworks.png';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
   score: getScore(state),
-  color: getColor(state)
+  color: getColor(state),
+  text: getText(state)
 });
 
 const mapDispatchToProps = {
@@ -17,42 +23,33 @@ const mapDispatchToProps = {
   handleScoreInc: incScore
 };
 
-const Kitten = state => {
-  function handleClick() {
-    state.handleHide();
-    state.handleScoreInc();
-    setTimeout(() => {
-      state.handleShow();
-    }, 1000);
+function handleClick(state) {
+  state.handleHide();
+  state.handleScoreInc();
+  setTimeout(() => {
+    state.handleShow();
+  }, 1000);
+}
+
+function Kitten(state) {
+  let textUrl;
+  switch (state.text) {
+    case '':
+      textUrl = '';
+      break;
+    default:
+      textUrl = `/says/${state.text}`;
   }
-
-  // const foo = {
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  // }
-
-  // const bar = text, cat => ({
-  //   cat: <asd prop={text}></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  //   cat: <asd></asd>,
-  // })[cat]
-  // bar('dasd')
-
-  const { color } = state;
-  const { isVisible } = state;
   return (
     <StyledWrapper>
-      {isVisible ? (
+      {state.isVisible ? (
         <StyledImg
-          src={`https://cataas.com/cat${color}?height=450?tm=${Date.now()}`}
+          src={`https://cataas.com/cat${
+            state.color
+          }${textUrl}?size=100&height=450?tm=${Date.now()}`}
           alt="Here should be a cat."
           onClick={() => {
-            handleClick();
+            handleClick(state);
           }}
         />
       ) : (
@@ -63,7 +60,7 @@ const Kitten = state => {
       )}
     </StyledWrapper>
   );
-};
+}
 
 const StyledMessege = styled.div`
   display: flex;

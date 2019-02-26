@@ -1,5 +1,12 @@
 import { combineReducers } from 'redux';
-import { HIDE_KITTEN, SHOW_KITTEN, INCREASE_SCORE, SET_COLOR } from './actions';
+import {
+  HIDE_KITTEN,
+  SHOW_KITTEN,
+  INCREASE_SCORE,
+  SET_COLOR,
+  TOGGLE_TEXT_MENU,
+  SET_TEXT
+} from './actions';
 
 const showKitten = (
   state = {
@@ -68,8 +75,35 @@ const setColor = (
   }
 };
 
+const toggleTextMenu = (
+  state = {
+    isTextMenuToggled: false
+  },
+  action
+) => {
+  switch (action.type) {
+    case TOGGLE_TEXT_MENU:
+      return {
+        isTextMenuToggled: !state.isTextMenuToggled
+      };
+    default:
+      return state;
+  }
+};
+
+const text = (state = '', action) => {
+  switch (action.type) {
+    case SET_TEXT:
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export const rootReducer = combineReducers({
   showKitten,
   incScore,
-  setColor
+  setColor,
+  toggleTextMenu,
+  text
 });

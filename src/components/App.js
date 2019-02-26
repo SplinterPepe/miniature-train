@@ -1,20 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import Kitten from './Kitten';
 import ScoreBoard from './ScoreBoard';
 import Menu from './Menu';
-import mfCat from './mfCat.webp';
-import ripCat from './ripCat.webp';
+import Kitten from './Kitten';
 import logoText from './logoText.png';
 import coolCat from './coolCat.webp';
 
-const App = () => {
+function App() {
   return (
     <StyledApp>
       <StyledHeader>
         <StyledLogo>
-          <img src={coolCat} />
-          <img src={logoText} />
+          <img src={coolCat} alt="coolCat" />
+          <img src={logoText} alt="logo" />
         </StyledLogo>
       </StyledHeader>
       <Menu />
@@ -23,7 +21,7 @@ const App = () => {
       <StyledFooter />
     </StyledApp>
   );
-};
+}
 
 const StyledApp = styled.div`
   height: 100%;
