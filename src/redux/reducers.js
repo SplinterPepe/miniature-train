@@ -4,88 +4,57 @@ import {
   SHOW_KITTEN,
   INCREASE_SCORE,
   SET_COLOR,
+  SET_FILTER,
+  SET_TEXT,
   TOGGLE_TEXT_MENU,
-  SET_TEXT
+  TOGGLE_GIF
 } from './actions';
 
-const showKitten = (
-  state = {
-    isVisible: true
-  },
-  action
-) => {
+const isCatVisible = (state = true, action) => {
   switch (action.type) {
     case HIDE_KITTEN:
-      return {
-        isVisible: false
-      };
+      return false;
     case SHOW_KITTEN:
-      return {
-        isVisible: true
-      };
+      return true;
     default:
       return state;
   }
 };
 
-const incScore = (
-  state = {
-    score: 0
-  },
-  action
-) => {
+const score = (state = 0, action) => {
   switch (action.type) {
     case INCREASE_SCORE:
-      return {
-        score: state.score + 1
-      };
+      return state + 1;
     default:
       return state;
   }
 };
 
-const setColor = (
-  state = {
-    color: ''
-  },
-  action
-) => {
+const color = (state = '', action) => {
   switch (action.type) {
     case SET_COLOR:
-      switch (state.color) {
+      switch (state) {
         case '':
-          return {
-            color: '/orange'
-          };
+          return '/orange';
         case '/orange':
-          return {
-            color: '/black'
-          };
+          return '/black';
         case '/black':
-          return {
-            color: ''
-          };
+          return '';
         default:
-          return {
-            color: ''
-          };
+          return '';
       }
+    case TOGGLE_GIF:
+      return '';
     default:
       return state;
   }
 };
 
-const toggleTextMenu = (
-  state = {
-    isTextMenuToggled: false
-  },
-  action
-) => {
+const isTextMenuToggled = (state = false, action) => {
   switch (action.type) {
     case TOGGLE_TEXT_MENU:
-      return {
-        isTextMenuToggled: !state.isTextMenuToggled
-      };
+      return !state;
+
     default:
       return state;
   }
@@ -99,11 +68,49 @@ const text = (state = '', action) => {
       return state;
   }
 };
+const isGif = (state = false, action) => {
+  switch (action.type) {
+    case TOGGLE_GIF:
+      return !state;
+    case SET_COLOR:
+      return false;
+    default:
+      return state;
+  }
+};
+
+const filter = (state = '', action) => {
+  switch (action.type) {
+    case SET_FILTER:
+      switch (state) {
+        case '':
+          return '?filter=blur&';
+        case '?filter=blur&':
+          return '?filter=mono&';
+        case '?filter=mono&':
+          return '?filter=sepia&';
+        case '?filter=sepia&':
+          return '?filter=negative&';
+        case '?filter=negative&':
+          return '?filter=paint&';
+        case '?filter=paint&':
+          return '?filter=pixel&';
+        case '?filter=pixel&':
+          return '';
+        default:
+          return '';
+      }
+    default:
+      return state;
+  }
+};
 
 export const rootReducer = combineReducers({
-  showKitten,
-  incScore,
-  setColor,
-  toggleTextMenu,
-  text
+  isCatVisible,
+  score,
+  color,
+  isTextMenuToggled,
+  text,
+  isGif,
+  filter
 });

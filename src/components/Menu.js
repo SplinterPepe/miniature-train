@@ -2,25 +2,45 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { getColor, getIsTextMenuToggled, getText } from '../redux/selectors';
-import { setColor, toggleTextMenu, setText } from '../redux/actions';
+import {
+  getColor,
+  getIsTextMenuToggled,
+  getText,
+  getIsGif,
+  getFilter
+} from '../redux/selectors';
+import {
+  setColor,
+  toggleTextMenu,
+  setText,
+  toggleGif,
+  setFilter
+} from '../redux/actions';
 
 const mapStateToProps = state => ({
   color: getColor(state),
   isTextMenuToggled: getIsTextMenuToggled(state),
-  text: getText(state)
+  text: getText(state),
+  isGif: getIsGif(state),
+  filter: getFilter(state)
 });
 
 const mapDispatchToProps = {
   handleColorSet: setColor,
   handleTextMenuToggle: toggleTextMenu,
-  handleSetText: setText
+  handleSetText: setText,
+  handleToggleGif: toggleGif,
+  handleFilterSet: setFilter
 };
 
 class Menu extends React.Component {
   static propTypes = {
     text: PropTypes.string,
     color: PropTypes.string,
+    isGif: PropTypes.bool,
+    filter: PropTypes.string,
+    handleFilterSet: PropTypes.func.isRequired,
+    handleToggleGif: PropTypes.func.isRequired,
     isTextMenuToggled: PropTypes.bool,
     handleSetText: PropTypes.func.isRequired,
     handleColorSet: PropTypes.func.isRequired,
@@ -30,6 +50,8 @@ class Menu extends React.Component {
   static defaultProps = {
     text: '',
     color: '',
+    filter: '',
+    isGif: false,
     isTextMenuToggled: false
   };
 
@@ -38,16 +60,29 @@ class Menu extends React.Component {
     '/black': 'Black'
   };
 
+  static FILTERS = {
+    '?filter=blur&': 'Blur',
+    '?filter=mono&': 'Mono',
+    '?filter=sepia&': 'Sepia',
+    '?filter=negative&': 'Negative',
+    '?filter=paint&': 'Paint',
+    '?filter=pixel&': 'Pixel'
+  };
+
   menuRef = React.createRef();
 
   render() {
     const {
       text,
       color,
+      isGif,
+      filter,
+      isTextMenuToggled,
       handleSetText,
       handleColorSet,
-      isTextMenuToggled,
-      handleTextMenuToggle
+      handleTextMenuToggle,
+      handleToggleGif,
+      handleFilterSet
     } = this.props;
 
     return (
@@ -94,6 +129,20 @@ class Menu extends React.Component {
             {text !== '' ? `Says "${text}"` : 'Says nothing'}
           </StyledButton>
         )}
+        <StyledButton
+          onClick={() => {
+            handleToggleGif();
+          }}
+        >
+          {isGif ? 'Gif' : 'Not Gif'}
+        </StyledButton>
+        <StyledButton
+          onClick={() => {
+            handleFilterSet();
+          }}
+        >
+          {Menu.FILTERS[filter] || 'No filter'}
+        </StyledButton>
       </StyledMenu>
     );
   }
@@ -103,10 +152,8 @@ const StyledTextSubmitionDiv = styled.div`
   display: flex;
   justify-content: center;
   height: 100%;
-  flex: 1;
+  flex: 2;
   background-color: #f9ad00;
-  border-right: 2px solid #f91;
-  border-left: 2px solid #f91;
   padding: 0 5px;
 `;
 
@@ -122,6 +169,7 @@ const StyledTextSubmitionInput = styled.input`
   justify-content: center;
   background-color: #fac480;
   border: 3px solid #f91;
+  width: 100%;
   color: #111110;
   &:focus {
     background-color: #f9a111;

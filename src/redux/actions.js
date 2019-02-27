@@ -9,6 +9,8 @@ export const SET_COLOR = 'SET_COLOR';
 export const TOGGLE_TEXT_MENU = 'TOGGLE_TEXT_MENU';
 export const SET_TEXT = 'SET_TEXT';
 export const RETURN_TEXT = 'RETURN_TEXT';
+export const TOGGLE_GIF = 'TOGGLE_GIF';
+export const SET_FILTER = 'SET_FILTER';
 /*
  * action
  */
@@ -34,4 +36,12 @@ export function toggleTextMenu() {
 
 export function setText(payload) {
   return { type: SET_TEXT, payload };
+}
+
+export function toggleGif() {
+  return { type: TOGGLE_GIF };
+}
+
+export function setFilter() {
+  return { type: SET_FILTER };
 }

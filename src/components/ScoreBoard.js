@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   score: getScore(state)
 });
 
-const ScoreBoard = state => {
+function ScoreBoard(state) {
   const { score } = state;
   const RenderScoreStars = [];
   for (let i = 0; i < score; i += 1) {
@@ -20,7 +20,7 @@ const ScoreBoard = state => {
       <StyledStar>{RenderScoreStars}</StyledStar>
     </StyledScoreBoard>
   );
-};
+}
 
 const StyledScoreBoard = styled.div`
   flex-shrink: 1;

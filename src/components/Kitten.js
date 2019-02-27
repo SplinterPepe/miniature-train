@@ -5,7 +5,9 @@ import {
   getKittenStatus,
   getScore,
   getColor,
-  getText
+  getText,
+  getIsGif,
+  getFilter
 } from '../redux/selectors';
 import { hideKitten, showKitten, incScore } from '../redux/actions';
 import fireworksImg from './fireworks.png';
@@ -14,7 +16,9 @@ const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
   score: getScore(state),
   color: getColor(state),
-  text: getText(state)
+  text: getText(state),
+  isGif: getIsGif(state),
+  filter: getFilter(state)
 });
 
 const mapDispatchToProps = {
@@ -40,13 +44,21 @@ function Kitten(state) {
     default:
       textUrl = `/says/${state.text}`;
   }
+  let gifUrl;
+  switch (state.isGif) {
+    case true:
+      gifUrl = '/gif';
+      break;
+    default:
+      gifUrl = '';
+  }
   return (
     <StyledWrapper>
       {state.isVisible ? (
         <StyledImg
-          src={`https://cataas.com/cat${
-            state.color
-          }${textUrl}?size=100&height=450?tm=${Date.now()}`}
+          src={`https://cataas.com/cat${gifUrl}${state.color}${textUrl}${
+            state.filter
+          }?tm=${Date.now()}`}
           alt="Here should be a cat."
           onClick={() => {
             handleClick(state);
