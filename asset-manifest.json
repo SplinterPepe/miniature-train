@@ -1,0 +1,17 @@
+{
+  "main.css": "/static/css/main.bfe5504a.chunk.css",
+  "main.js": "/static/js/main.1fc22b56.chunk.js",
+  "main.js.map": "/static/js/main.1fc22b56.chunk.js.map",
+  "runtime~main.js": "/static/js/runtime~main.fdfcfda2.js",
+  "runtime~main.js.map": "/static/js/runtime~main.fdfcfda2.js.map",
+  "static/js/2.08d4e8ae.chunk.js": "/static/js/2.08d4e8ae.chunk.js",
+  "static/js/2.08d4e8ae.chunk.js.map": "/static/js/2.08d4e8ae.chunk.js.map",
+  "index.html": "/index.html",
+  "precache-manifest.56d388b583ed1a19bae79cb6f3d88866.js": "/precache-manifest.56d388b583ed1a19bae79cb6f3d88866.js",
+  "service-worker.js": "/service-worker.js",
+  "static/css/main.bfe5504a.chunk.css.map": "/static/css/main.bfe5504a.chunk.css.map",
+  "static/media/coolCat.webp": "/static/media/coolCat.b8453e4b.webp",
+  "static/media/fireworks.png": "/static/media/fireworks.9d1c4d23.png",
+  "static/media/logoText.png": "/static/media/logoText.2f84bc30.png",
+  "static/media/waitingCat.gif": "/static/media/waitingCat.bf9b0077.gif"
+}
