@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import waitingCat from './waitingCat.gif';
+
 import {
   getKittenStatus,
-  getScore,
   getColor,
   getText,
   getIsGif,
-  getFilter
+  getFilter,
+  getIsClicking
 } from '../redux/selectors';
 import { hideKitten, showKitten, incScore } from '../redux/actions';
 import fireworksImg from './fireworks.png';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
-  score: getScore(state),
   color: getColor(state),
   text: getText(state),
   isGif: getIsGif(state),
-  filter: getFilter(state)
+  filter: getFilter(state),
+  isClicking: getIsClicking(state)
 });
 
 const mapDispatchToProps = {
@@ -27,54 +30,77 @@ const mapDispatchToProps = {
   handleScoreInc: incScore
 };
 
-function handleClick(state) {
-  state.handleHide();
-  state.handleScoreInc();
-  setTimeout(() => {
-    state.handleShow();
-  }, 1000);
+class Kitten extends React.Component {
+  static propTypes = {
+    isVisible: PropTypes.bool,
+    color: PropTypes.string,
+    text: PropTypes.string,
+    isGif: PropTypes.bool,
+    filter: PropTypes.string,
+    isClicking: PropTypes.bool,
+    handleHide: PropTypes.func.isRequired,
+    handleShow: PropTypes.func.isRequired,
+    handleScoreInc: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    isVisible: true,
+    color: '',
+    text: '',
+    isGif: false,
+    filter: '',
+    isClicking: false
+  };
+
+  handleClick() {
+    const { handleHide, handleShow, handleScoreInc } = this.props;
+    handleHide();
+    handleScoreInc();
+    setTimeout(() => {
+      handleShow();
+    }, 1000);
+  }
+
+  render() {
+    const { isVisible, color, text, isGif, filter, isClicking } = this.props;
+    return (
+      <WrapperStyled>
+        {isVisible && !isClicking && (
+          <ImgStyled
+            src={`https://cataas.com/cat${
+              isGif === true ? '/gif' : ''
+            }${color}${
+              text !== '' ? `/says/${text}` : ''
+            }${filter}?tm=${Date.now()}`}
+            alt="Here should be a cat."
+            onClick={() => {
+              this.handleClick();
+            }}
+          />
+        )}
+        {isClicking && <WaitingMessegeStyled />}
+        {!isVisible && !isClicking && (
+          <AfterClickMessegeStyled>
+            <p>Good job!</p>
+            <p>Click again</p>
+          </AfterClickMessegeStyled>
+        )}
+      </WrapperStyled>
+    );
+  }
 }
 
-function Kitten(state) {
-  let textUrl;
-  switch (state.text) {
-    case '':
-      textUrl = '';
-      break;
-    default:
-      textUrl = `/says/${state.text}`;
-  }
-  let gifUrl;
-  switch (state.isGif) {
-    case true:
-      gifUrl = '/gif';
-      break;
-    default:
-      gifUrl = '';
-  }
-  return (
-    <StyledWrapper>
-      {state.isVisible ? (
-        <StyledImg
-          src={`https://cataas.com/cat${gifUrl}${state.color}${textUrl}${
-            state.filter
-          }?tm=${Date.now()}`}
-          alt="Here should be a cat."
-          onClick={() => {
-            handleClick(state);
-          }}
-        />
-      ) : (
-        <StyledMessege>
-          <p>Good job!</p>
-          <p>Click again</p>
-        </StyledMessege>
-      )}
-    </StyledWrapper>
-  );
-}
+const WrapperStyled = styled.div`
+  display: flex;
+  background: #70c8be;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-height: 300px;
+  height: 60%;
+`;
 
-const StyledMessege = styled.div`
+const AfterClickMessegeStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -87,21 +113,20 @@ const StyledMessege = styled.div`
   background-position: center;
   width: 100%;
 `;
-const StyledWrapper = styled.div`
-  display: flex;
-  background: #70c8be;
-  justify-content: center;
-  flex-shrink: 1;
-  flex-grow: 0;
-  height: 500px;
+
+const WaitingMessegeStyled = styled.div`
+  width: 100%;
+  background-image: url(${waitingCat});
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
-const StyledImg = styled.img`
+const ImgStyled = styled.img`
   cursor: pointer;
   background-repeat: no-repeat;
   min-width: 300px;
   max-width: 500px;
-  max-height: 500px;
-  min-height: 0px;
+  height: 100%;
 `;
 
 export default connect(

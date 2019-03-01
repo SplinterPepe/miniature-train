@@ -8,48 +8,49 @@ import coolCat from './coolCat.webp';
 
 function App() {
   return (
-    <StyledApp>
-      <StyledHeader>
-        <StyledLogo>
+    <AppStyled>
+      <HeaderStyled>
+        <LogoStyled>
           <img src={coolCat} alt="coolCat" />
           <img src={logoText} alt="logo" />
-        </StyledLogo>
-      </StyledHeader>
+        </LogoStyled>
+      </HeaderStyled>
       <Menu />
       <Kitten />
       <ScoreBoard />
-      <StyledFooter />
-    </StyledApp>
+      <FooterStyled>© localhost:3000</FooterStyled>
+    </AppStyled>
   );
 }
 
-const StyledApp = styled.div`
+const AppStyled = styled.div`
   height: 100%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
 `;
-const StyledHeader = styled.header`
+const HeaderStyled = styled.header`
   background: #f9ad84;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap-reverse;
+  flex-shrink: 0;
 `;
-const StyledLogo = styled.div`
+const LogoStyled = styled.div`
   cursor: pointer;
   width: auto;
-  height: 100%;
+  height: 95%;
   background-size: contain;
   background-repeat: no-repeat;
   > img {
-    height: 100px;
+    height: 90px;
     width: auto;
   }
 `;
-const StyledFooter = styled.div`
+const FooterStyled = styled.div`
+  color: #aaa;
   background-color: #111110;
   width: 100%;
-  height: 50px;
+  height: auto;
 `;
 
 export default App;

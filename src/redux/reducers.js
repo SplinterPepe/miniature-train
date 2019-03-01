@@ -7,7 +7,9 @@ import {
   SET_FILTER,
   SET_TEXT,
   TOGGLE_TEXT_MENU,
-  TOGGLE_GIF
+  TOGGLE_GIF,
+  START_TIMER,
+  STOP_TIMER
 } from './actions';
 
 const isCatVisible = (state = true, action) => {
@@ -104,7 +106,16 @@ const filter = (state = '', action) => {
       return state;
   }
 };
-
+const isClicking = (state = false, action) => {
+  switch (action.type) {
+    case START_TIMER:
+      return true;
+    case STOP_TIMER:
+      return false;
+    default:
+      return state;
+  }
+};
 export const rootReducer = combineReducers({
   isCatVisible,
   score,
@@ -112,5 +123,6 @@ export const rootReducer = combineReducers({
   isTextMenuToggled,
   text,
   isGif,
-  filter
+  filter,
+  isClicking
 });

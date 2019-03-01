@@ -11,6 +11,8 @@ export const SET_TEXT = 'SET_TEXT';
 export const RETURN_TEXT = 'RETURN_TEXT';
 export const TOGGLE_GIF = 'TOGGLE_GIF';
 export const SET_FILTER = 'SET_FILTER';
+export const START_TIMER = 'START_TIMER';
+export const STOP_TIMER = 'STOP_TIMER';
 /*
  * action
  */
@@ -44,4 +46,10 @@ export function toggleGif() {
 
 export function setFilter() {
   return { type: SET_FILTER };
+}
+export function startTimer() {
+  return { type: START_TIMER };
+}
+export function stopTimer() {
+  return { type: STOP_TIMER };
 }

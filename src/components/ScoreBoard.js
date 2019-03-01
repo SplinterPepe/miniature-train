@@ -10,43 +10,49 @@ const mapStateToProps = state => ({
 
 function ScoreBoard(state) {
   const { score } = state;
-  const RenderScoreStars = [];
-  for (let i = 0; i < score; i += 1) {
-    RenderScoreStars.push(<StyledScore />);
-  }
   return (
     <StyledScoreBoard>
-      <StyledMessege>Score: {score} </StyledMessege>
-      <StyledStar>{RenderScoreStars}</StyledStar>
+      {score !== 0 ? (
+        <StyledScoreDiv>
+          <StyledStar />
+          <StyledMessege>x{score}</StyledMessege>
+        </StyledScoreDiv>
+      ) : (
+        <StyledMessege>START CLICKING CATS</StyledMessege>
+      )}
     </StyledScoreBoard>
   );
 }
 
 const StyledScoreBoard = styled.div`
-  flex-shrink: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  flex-shrink: 0;
   flex-grow: 1;
   background: #d1d168;
+  min-height: 110px;
+`;
+const StyledScoreDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  align-self: center;
+  align-content: center;
+
+  flex-direction: row;
+  height: 100%;
 `;
 const StyledStar = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  flex-direction: row;
-  width: 80%;
-  align-self: center;
-`;
-const StyledScore = styled.div`
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
   background: url(${scoreImg});
   background-size: contain;
+  align-self: center;
 `;
 const StyledMessege = styled.div`
   align-self: center;
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 40px;
+  font-weight: 700;
   color: #111110;
 `;
 
