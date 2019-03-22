@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/miniature-train/static/media/coolCat.b8453e4b.webp"
   },
   {
-    "revision": "15803f791cd41b84a9bf619350def718",
+    "revision": "bbf15bd943777eef0a02ff6c331e13d6",
     "url": "/miniature-train/index.html"
   }
 ];
