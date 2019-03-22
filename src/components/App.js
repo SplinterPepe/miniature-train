@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import ScoreBoard from './ScoreBoard';
 import Menu from './Menu';
 import Kitten from './Kitten';
-import logoText from './logoText.png';
-import coolCat from './coolCat.webp';
+import logoText from './img/logoText.png';
+import coolCat from './img/coolCat.webp';
 
 function App() {
   return (
@@ -18,7 +18,9 @@ function App() {
       <Menu />
       <Kitten />
       <ScoreBoard />
-      <FooterStyled>© localhost:3000</FooterStyled>
+      <FooterStyled>
+        Made by <span> &#128465;</span>
+      </FooterStyled>
     </AppStyled>
   );
 }
@@ -29,6 +31,7 @@ const AppStyled = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
 const HeaderStyled = styled.header`
   background: #f9ad84;
   display: flex;
@@ -38,6 +41,7 @@ const HeaderStyled = styled.header`
     display: none;
   }
 `;
+
 const LogoStyled = styled.div`
   cursor: pointer;
   width: auto;
@@ -49,7 +53,10 @@ const LogoStyled = styled.div`
     width: auto;
   }
 `;
+
 const FooterStyled = styled.div`
+  min-height: 30px;
+  font-size: 15px;
   color: #aaa;
   background-color: #111110;
   width: 100%;

@@ -192,6 +192,7 @@ const TextSubmitionDivStyled = styled.div`
   flex: 1;
   background-color: #f9ad00;
   padding: 0 5px;
+  flex-wrap: wrap;
 `;
 
 const TwoRowButtonBoxStyled = styled.div`
@@ -215,12 +216,12 @@ const TextSubmitionInputStyled = styled.input`
 
 const SubmitButtonStyled = styled.button`
   text-align: center;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 700;
   flex: 1;
   background-color: #f9ad00;
   cursor: pointer;
-  min-width: 30px;
+  min-width: 15vh;
 
   &:hover {
     background-color: #f91;
@@ -252,6 +253,7 @@ const ButtonStyled = styled.div`
     background-color: #fac480;
   }
 `;
+
 const ButtonPanelStyled = styled.div`
   display: flex;
   flex-direction: row;
@@ -260,6 +262,7 @@ const ButtonPanelStyled = styled.div`
   max-height: 90px;
   flex: 1;
 `;
+
 const StringStyled = styled.div`
   width: 140px;
   flex-grow: 0;
@@ -267,6 +270,7 @@ const StringStyled = styled.div`
   font-weight: 700;
   align-self: center;
 `;
+
 const MenuStyled = styled.div`
   flex-wrap: wrap;
   flex-shrink: 0;

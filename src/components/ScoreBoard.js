@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import scoreImg from './star.png';
 import { getScore } from '../redux/selectors';
+import scoreImg from './img/star.png';
 
 const mapStateToProps = state => ({
   score: getScore(state)
@@ -34,6 +34,7 @@ const StyledScoreBoard = styled.div`
   background: #d1d168;
   min-height: 110px;
 `;
+
 const StyledScoreDiv = styled.div`
   display: flex;
   align-self: center;
@@ -42,6 +43,7 @@ const StyledScoreDiv = styled.div`
   flex-direction: row;
   height: 100%;
 `;
+
 const StyledStar = styled.div`
   height: 100px;
   width: 100px;
@@ -49,6 +51,7 @@ const StyledStar = styled.div`
   background-size: contain;
   align-self: center;
 `;
+
 const StyledMessege = styled.div`
   align-self: center;
   font-size: 40px;

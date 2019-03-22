@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import waitingCat from './waitingCat.gif';
+import waitingCat from './img/waitingCat.gif';
+import fireworksImg from './img/fireworks.png';
 
 import {
   getKittenStatus,
@@ -13,7 +14,6 @@ import {
   getIsClicking
 } from '../redux/selectors';
 import { hideKitten, showKitten, incScore } from '../redux/actions';
-import fireworksImg from './fireworks.png';
 
 const mapStateToProps = state => ({
   isVisible: getKittenStatus(state),
