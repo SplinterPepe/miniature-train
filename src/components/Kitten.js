@@ -121,6 +121,7 @@ const WaitingMessegeStyled = styled.div`
   background-size: contain;
   background-position: center;
 `;
+
 const ImgStyled = styled.img`
   cursor: pointer;
   background-repeat: no-repeat;
