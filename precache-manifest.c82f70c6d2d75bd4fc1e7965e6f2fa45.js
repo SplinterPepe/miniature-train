@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "70fb5f629530e0218b52",
+    "revision": "7558b9048f690da1d07f",
     "url": "/miniature-train/static/css/main.bfe5504a.chunk.css"
   },
   {
-    "revision": "70fb5f629530e0218b52",
-    "url": "/miniature-train/static/js/main.70fb5f62.chunk.js"
+    "revision": "7558b9048f690da1d07f",
+    "url": "/miniature-train/static/js/main.7558b904.chunk.js"
   },
   {
     "revision": "cce1cfd6bc0c53082ed0",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/miniature-train/static/media/coolCat.b8453e4b.webp"
   },
   {
-    "revision": "d7bd0d5509236717950f02fbf527b88a",
+    "revision": "15803f791cd41b84a9bf619350def718",
     "url": "/miniature-train/index.html"
   }
 ];
