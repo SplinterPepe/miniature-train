@@ -34,6 +34,9 @@ const HeaderStyled = styled.header`
   display: flex;
   justify-content: center;
   flex-shrink: 0;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 const LogoStyled = styled.div`
   cursor: pointer;
@@ -51,6 +54,9 @@ const FooterStyled = styled.div`
   background-color: #111110;
   width: 100%;
   height: auto;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
 
 export default App;
